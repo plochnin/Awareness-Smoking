@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html style="font-size: 16px;">
+  <head>
+    <title>gbl_efforts</title>
+    <link rel="stylesheet" href="smoke.css" media="screen">
+<link rel="stylesheet" href="gbl_efforts.css" media="screen">
+    <script class="u-script" type="text/javascript" src="jquery.js" defer=""></script>
+    <script class="u-script" type="text/javascript" src="smoke.js" defer=""></script>
+    <link id="u-theme-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i|Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i">
+    <link id="u-page-google-font" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather:300,300i,400,400i,700,700i,900,900i|Roboto+Slab:100,200,300,400,500,600,700,800,900">
+    
+  </head>
+  <body class="u-body u-overlap u-overlap-contrast u-overlap-transparent"><header class="u-black u-clearfix u-header u-header" id="sec-9c25"><div class="u-clearfix u-sheet u-sheet-1">
+        <nav class="u-align-right u-menu u-menu-dropdown u-nav-spacing-25 u-offcanvas u-menu-1">
+          <div class="menu-collapse" style="font-size: 2.25rem;">
+            <a class="u-button-style u-custom-color u-custom-text-color u-nav-link" href="#" style="padding: 4px 0px; font-size: calc(1em + 8px);">
+              <svg class="u-svg-link" preserveAspectRatio="xMidYMin slice" viewBox="0 0 302 302" style="undefined"><use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#svg-7b92"></use></svg>
+              <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="svg-7b92" x="0px" y="0px" viewBox="0 0 302 302" style="enable-background:new 0 0 302 302;" xml:space="preserve" class="u-svg-content"><g><rect y="36" width="302" height="30"></rect><rect y="236" width="302" height="30"></rect><rect y="136" width="302" height="30"></rect>
+</g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+            </a>
+          </div>
+          <div class="u-custom-menu u-nav-container">
+            <ul class="u-nav u-spacing-25 u-unstyled u-nav-1"><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-white" href="Home.html" style="padding: 8px 0px;">Home</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-white" href="About.html" style="padding: 8px 0px;">About</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link u-text-white" href="Take-Action.html" style="padding: 8px 0px;">Take Action</a>
+</li></ul>
+          </div>
+          <div class="u-custom-menu u-nav-container-collapse">
+            <div class="u-align-center u-black u-container-style u-inner-container-layout u-opacity u-opacity-95 u-sidenav">
+              <div class="u-inner-container-layout u-sidenav-overflow">
+                <div class="u-menu-close"></div>
+                <ul class="u-align-center u-nav u-popupmenu-items u-unstyled u-nav-2"><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Home.html" style="padding: 8px 0px;">Home</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="About.html" style="padding: 8px 0px;">About</a>
+</li><li class="u-nav-item"><a class="u-button-style u-nav-link" href="Take-Action.html" style="padding: 8px 0px;">Take Action</a>
+</li></ul>
+              </div>
+            </div>
+            <div class="u-black u-menu-overlay u-opacity u-opacity-70"></div>
+          </div>
+        </nav>
+      </div></header>
+    <section class="u-black u-clearfix u-section-1" id="sec-98fb">
+      <div>
+        
+        <h1 class="u-align-center u-custom-font u-font-merriweather u-text u-text-1">Global Smoking Population</h1>
+      
+
+
+
+
+
+
+
+      <head>
+        <style> body { margin: 0; }
+         </style>
+      
+        <script src="globe.js"></script>
+        
+      </head>
+        <div id="globeViz"></div>
+        <script>
+          const world = Globe()
+            (document.getElementById('globeViz'))
+            .globeImageUrl('globe_images/earth-dark.jpg')
+            .backgroundImageUrl('globe_images/galaxy_starfield.png')
+            .pointOfView({ altitude: 4 }, 5000)
+            .polygonCapColor(feat => 'rgba(200, 0, 0, 0.6)')
+            .polygonSideColor(() => 'rgba(100, 0, 0, 0.5)')
+            .polygonLabel(({ properties: d }) => `
+                <b>${d.ADMIN} (${d.ISO_A2})</b> <br />
+                Smoking Population: <i>${Math.round(+d.Smk_rate)}</i>
+              `);
+      
+          // Auto-rotate
+          world.controls().autoRotate = true;
+          world.controls().autoRotateSpeed = 1.8;
+      
+          fetch('data.json').then(res => res.json()).then(countries => {
+            world.polygonsData(countries.features.filter(d => d.properties.ISO_A2 !== 'AQ'));
+      
+            setTimeout(() => world
+              .polygonsTransitionDuration(4000)
+              .polygonAltitude(feat => Math.max(0.1, Math.sqrt(+feat.properties.Smk_rate) * 7e-5))
+            , 3000);
+          });
+        </script>
+
+    </div>
+    </section>
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <section class="u-align-center u-clearfix u-custom-color-1 u-section-2" id="carousel_7f0c">
+      <div class="u-black u-container-style u-expanded-width u-group u-shape-rectangle u-group-1">
+        <div class="u-container-layout u-container-layout-1">
+          <div class="u-align-center-xs u-container-style u-group u-palette-2-light-3 u-radius-20 u-shape-round u-group-2">
+            <div class="u-container-layout u-valign-bottom u-container-layout-2">
+              <h1 class="u-align-center-lg u-align-center-md u-align-center-sm u-align-center-xl u-custom-font u-font-merriweather u-text u-text-default u-text-1"> Smoking rates around the world</h1>
+              <p class="u-align-center-lg u-align-center-md u-align-center-sm u-align-center-xl u-custom-font u-font-roboto-slab u-text u-text-2"> Overall, the highest smoking rates are found in Southeast Asia and the Balkan region of Europe. Western European countries and the Americas tend to have lower smoking rates, However, this is not always guaranteed, as Chile turns out to have one of the highest smoking rates in the world. Of the top five countries with the highest smoking rates in the world in 2018, three are in the Pacific Islands, one is in Southeast Asia, and one is in South America.In many South and Southeast Asian countries, the smoking rate tends to be very high for men and very low for women. In Indonesia, for example, the male smoking rate is 76.20%, and the female smoking rate is 3.60%.<br>
+                <br>In general, smoking rates have decreased around the world due to increased education on the effects of tobacco and anti-tobacco campaigns. In 2000, the United Kingdom had a smoking rate of 38%. It has since dropped to 19.2%.<br>
+                <br>Nauru has the highest smoking rates in the world at 52.1%. Oddly, women smoke slightly more than men in Nauru (52.6% to 51.7%), which is somewhat of an outlier. The second-highest rate belongs to Kiribati, whose (52.0%) total consists of 68.6% of males and 35.5% of females, which is a more typical distribution.<br>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    
+    <footer class="u-black u-clearfix u-footer" id="sec-7b44"><div class="u-clearfix u-sheet u-sheet-1">
+      <div class="u-clearfix u-expanded-width-lg u-expanded-width-md u-expanded-width-xl u-expanded-width-xs u-gutter-30 u-layout-wrap u-layout-wrap-1">
+        <div class="u-gutter-0 u-layout">
+          <div class="u-layout-row">
+            <div class="u-align-left u-container-style u-layout-cell u-left-cell u-size-20 u-size-20-md u-layout-cell-1" data-href="Pixabay.com">
+              <div class="u-container-layout u-valign-top u-container-layout-1"><!--position-->
+                <div data-position="" class="u-position"><!--block-->
+                  <div class="u-block">
+                    <div class="u-block-container u-clearfix"><!--block_header-->
+                      <h5 class="u-block-header u-text"><!--block_header_content--> All images are from <span class="u-text-palette-4-base">Pixabay</span><!--/block_header_content-->
+                      </h5><!--/block_header--><!--block_content-->
+                      <div class="u-block-content u-text"><!--block_content_content--><!--/block_content_content--></div><!--/block_content-->
+                    </div>
+                  </div><!--/block-->
+                </div><!--/position-->
+              </div>
+            </div>
+            <div class="u-align-left u-container-style u-layout-cell u-size-20 u-size-20-md u-layout-cell-2">
+              <div class="u-container-layout u-valign-top u-container-layout-2"><!--position-->
+                <div data-position="" class="u-position u-position-2"><!--block-->
+                  <div class="u-block">
+                    <div class="u-block-container u-clearfix"><!--block_content-->
+                      <div class="u-block-content u-text u-text-3"><!--block_content_content--><!--/block_content_content--></div><!--/block_content-->
+                    </div>
+                  </div><!--/block-->
+                </div><!--/position-->
+              </div>
+            </div>
+            <div class="u-align-center u-container-style u-layout-cell u-right-cell u-size-20 u-size-20-md u-layout-cell-3">
+              <div class="u-container-layout u-container-layout-3"><!--position-->
+                <div data-position="" class="u-position u-position-3"><!--block-->
+                  <div class="u-block">
+                    <div class="u-block-container u-clearfix"><!--block_header-->
+                      <h5 class="u-block-header u-text"><!--block_header_content--> Do your Bit<!--/block_header_content--></h5><!--/block_header--><!--block_content-->
+                      <div class="u-block-content u-text"><!--block_content_content--><!--/block_content_content--></div><!--/block_content-->
+                    </div>
+                  </div><!--/block-->
+                </div><!--/position-->
+                <p class="u-text u-text-default u-text-palette-4-base u-text-6">
+                  <a class="u-active-none u-border-none u-btn u-button-link u-button-style u-hover-none u-none u-text-palette-1-base u-btn-1" href="Take-Action.html" data-page-id="2585528579">TAKE ACTION</a>
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div></footer>
+  </body>
+</html>
